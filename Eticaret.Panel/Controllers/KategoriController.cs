@@ -27,10 +27,45 @@ namespace Eticaret.Panel.Controllers
             return View();
         }
 
+        [HttpGet, Route("duzenle/{id}")] // localhost/kategori/duzenle/KFGD23G-DFG32F-5YTH
+        public async Task<ViewResult> Duzenle(Guid id)
+        {
+            Kategori kategori = await _kategoriService.GetAsync(id);
+            return View(kategori);
+        }
+
         [HttpPost, Route("olustur")]
         public async Task<ActionResult> Olustur(Kategori model)
         {
             bool sonuc = await _kategoriService.InsertAsync(model);
+            return RedirectToAction("Index", "Kategori");
+        }
+
+        [HttpPost, Route("guncelle")]
+        public async Task<ActionResult> Guncelle(Kategori model)
+        {
+            bool sonuc = await _kategoriService.UpdateAsync(model);
+            return RedirectToAction("Index", "Kategori");
+        }
+
+        [HttpGet, Route("sil/{id}")]
+        public async Task<ActionResult> Sil(Guid id)
+        {
+            bool sonuc = await _kategoriService.DeleteAsync(id);
+            return RedirectToAction("Index", "Kategori");
+        }
+
+        [HttpGet, Route("aktiflestir/{id}")]
+        public async Task<ActionResult> Aktiflestir(Guid id)
+        {
+            bool sonuc = await _kategoriService.AktiflestirAsync(id);
+            return RedirectToAction("Index", "Kategori");
+        }
+
+        [HttpGet, Route("pasiflestir/{id}")]
+        public async Task<ActionResult> Pasiflestir(Guid id)
+        {
+            bool sonuc = await _kategoriService.PasiflestirAsync(id);
             return RedirectToAction("Index", "Kategori");
         }
     }

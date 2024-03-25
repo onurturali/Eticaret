@@ -22,8 +22,8 @@ namespace Eticaret.Panel.Services
 
         public async Task<List<Kategori>> GetAllAsync()
         {
-            // SELECT * FROM Kategori
-            List<Kategori> kategoriler = await _context.Kategori.ToListAsync();
+            // SELECT * FROM Kategori WHERE Durum != -1
+            List<Kategori> kategoriler = await _context.Kategori.Where(m => m.Durum != -1).ToListAsync();
             return kategoriler;
         }
 
@@ -73,5 +73,36 @@ namespace Eticaret.Panel.Services
                 return false;
             }
         }
+
+        public async Task<bool> AktiflestirAsync(Guid id)
+        {
+            try
+            {
+                Kategori kategori = await GetAsync(id);
+                kategori.Durum = 1;
+                bool sonuc = await UpdateAsync(kategori);
+                return sonuc;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> PasiflestirAsync(Guid id)
+        {
+            try
+            {
+                Kategori kategori = await GetAsync(id);
+                kategori.Durum = 0;
+                bool sonuc = await UpdateAsync(kategori);
+                return sonuc;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
     }
 }

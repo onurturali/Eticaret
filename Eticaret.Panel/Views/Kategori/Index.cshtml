@@ -30,16 +30,18 @@
                             }
                         </td>
                         <td>
-                            @if (kategori.Durum == 1)
-                            {
-                                <a href="#" class="btn btn-sm btn-warning">Pasifleştir</a>
-                            }
-                            else
-                            {
-                                <a href="#" class="btn btn-sm btn-success">Aktifleştir</a>
-                            }
-                            <a href="#" class="btn btn-sm btn-primary">Düzenle</a>
-                            <a href="#" class="btn btn-sm btn-danger">Sil</a>
+                            <div class="d-flex justify-content-end align-items-center">
+                                @if (kategori.Durum == 1)
+                                {
+                                    <a asp-controller="Kategori" asp-action="Pasiflestir" asp-route-id="@kategori.Id" class="btn btn-sm btn-warning me-2">Pasifleştir</a>
+                                }
+                                else
+                                {
+                                    <a asp-controller="Kategori" asp-action="Aktiflestir" asp-route-id="@kategori.Id" class="btn btn-sm btn-success me-2">Aktifleştir</a>
+                                }
+                                <a asp-controller="Kategori" asp-action="Duzenle" asp-route-id="@kategori.Id" class="btn btn-sm btn-primary me-2">Düzenle</a>
+                                <a asp-controller="Kategori" asp-action="Sil" asp-route-id="@kategori.Id" class="btn btn-sm btn-danger">Sil</a>
+                            </div>
                         </td>
                     </tr>
                 }

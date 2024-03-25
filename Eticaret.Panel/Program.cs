@@ -13,6 +13,7 @@ builder.Services.AddDbContext<MainDatabaseContext>(options =>
 }, ServiceLifetime.Scoped);
 
 builder.Services.AddScoped<IKategoriService, KategoriService>();
+builder.Services.AddScoped<IUrunService, UrunService>();
 
 var app = builder.Build();
 
