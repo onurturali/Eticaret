@@ -1,0 +1,41 @@
+﻿@model Urun
+
+@{
+    List<Kategori> kategoriler = (List<Kategori>)ViewBag.Kategoriler;
+}
+
+<h1>Yeni Ürün Ekle</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <form asp-controller="Urun" asp-action="Olustur" method="post" autocomplete="off">
+                <div class="card-header">
+                    <h5 class="card-title">Yeni Ürün Bilgileri</h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label asp-for="Ad" class="form-label"></label>
+                        <input asp-for="Ad" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="KategoriId" class="form-label"></label>
+                        <select asp-for="KategoriId" class="form-select">
+                            @foreach (Kategori kategori in kategoriler)
+                            {
+                                <option value="@kategori.Id">@kategori.Ad</option>
+                            }
+                        </select>
+                    </div>
+                    <div>
+                        <label asp-for="Fiyat" class="form-label"></label>
+                        <input asp-for="Fiyat" class="form-control" />
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-success">Oluştur</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

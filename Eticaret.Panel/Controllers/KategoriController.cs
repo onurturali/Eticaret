@@ -18,6 +18,7 @@ namespace Eticaret.Panel.Controllers
         public async Task<ViewResult> Index()
         {
             List<Kategori> kategoriler = await _kategoriService.GetAllAsync();
+            ViewBag.CSHARPDERSI = "Onur";
             return View(kategoriler);
         }
 

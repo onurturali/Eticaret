@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Eticaret.Model
@@ -9,12 +10,19 @@ namespace Eticaret.Model
         [Key]
         public Guid Id { get; set; }
 
+        [DisplayName("Ürün Adı")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Ürün adı giriniz.")]
+        [MaxLength(50, ErrorMessage = "En fazla 50 karakter girebilirsiniz.")]
         public string Ad { get; set; } = string.Empty;
 
+        [DisplayName("Fiyat")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Fiyat giriniz.")]
         public double Fiyat { get; set; }
 
-        public string GorselAd { get; set; } = string.Empty;
+        [DisplayName("Görsel")]
+        public string? GorselAd { get; set; }
 
+        [DisplayName("Kategori Adı")]
         public Guid KategoriId { get; set; }
 
         [ForeignKey("KategoriId")]
