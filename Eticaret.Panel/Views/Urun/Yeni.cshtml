@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-md-6">
         <div class="card shadow-sm">
-            <form asp-controller="Urun" asp-action="Olustur" method="post" autocomplete="off">
+            <form asp-controller="Urun" asp-action="Olustur" method="post" autocomplete="off" enctype="multipart/form-data">
                 <div class="card-header">
                     <h5 class="card-title">Yeni Ürün Bilgileri</h5>
                 </div>
@@ -30,6 +30,10 @@
                     <div>
                         <label asp-for="Fiyat" class="form-label"></label>
                         <input asp-for="Fiyat" class="form-control" />
+                    </div>
+                    <div>
+                        <label asp-for="GorselAd" class="form-label"></label>
+                        <input type="file" name="gorsel" class="form-control" />
                     </div>
                 </div>
                 <div class="card-footer">
