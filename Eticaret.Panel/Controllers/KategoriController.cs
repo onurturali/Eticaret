@@ -1,10 +1,11 @@
 ﻿using Eticaret.Model;
 using Eticaret.Panel.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Eticaret.Panel.Controllers
 {
-    [Route("kategori")]
+    [Authorize, Route("kategori")]
     public class KategoriController : Controller
     {
         private readonly IKategoriService _kategoriService;

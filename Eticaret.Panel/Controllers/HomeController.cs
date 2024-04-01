@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Eticaret.Panel.Controllers
 {
-    [Route("")]
+    [Authorize, Route("")]
     public class HomeController : Controller
     {
         [Route("")]

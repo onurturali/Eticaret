@@ -4,14 +4,17 @@
     List<Kategori> kategoriler = (List<Kategori>)ViewBag.Kategoriler;
 }
 
-<h1>Yeni Ürün Ekle</h1>
+<h1>Ürün Düzenle</h1>
 
 <div class="row">
     <div class="col-md-6">
         <div class="card shadow-sm">
-            <form asp-controller="Urun" asp-action="Olustur" method="post" autocomplete="off">
+            <form asp-controller="Urun" asp-action="Guncelle" method="post" autocomplete="off" enctype="multipart/form-data">
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="GorselAd" />
+
                 <div class="card-header">
-                    <h5 class="card-title">Yeni Ürün Bilgileri</h5>
+                    <h5 class="card-title">Ürün Bilgileri</h5>
                 </div>
                 <div class="card-body">
                     <div class="mb-3">
@@ -31,9 +34,13 @@
                         <label asp-for="Fiyat" class="form-label"></label>
                         <input asp-for="Fiyat" class="form-control" />
                     </div>
+                    <div>
+                        <label asp-for="GorselAd" class="form-label"></label>
+                        <input type="file" name="gorsel" class="form-control" />
+                    </div>
                 </div>
                 <div class="card-footer">
-                    <button class="btn btn-success">Oluştur</button>
+                    <button class="btn btn-success">Kaydet</button>
                 </div>
             </form>
         </div>

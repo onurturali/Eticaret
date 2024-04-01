@@ -1,10 +1,11 @@
 ﻿using Eticaret.Model;
 using Eticaret.Panel.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Eticaret.Panel.Controllers
 {
-    [Route("urun")]
+    [Authorize, Route("urun")]
     public class UrunController : Controller
     {
         private readonly IUrunService _urunService;
@@ -59,6 +60,28 @@ namespace Eticaret.Panel.Controllers
             }
 
             bool sonuc = await _urunService.InsertAsync(model);
+            return RedirectToAction("Index", "Urun");
+        }
+
+        [HttpPost, Route("guncelle")]
+        public async Task<ActionResult> Guncelle(Urun model, IFormFile gorsel)
+        {
+            if (gorsel != null)
+            {
+                string dosyaAdi = gorsel.FileName;
+                List<string> dosyaParcalari = dosyaAdi.Split('.').ToList();
+                string dosyaUzantisi = dosyaParcalari.Last();
+                string yeniDosyaAdi = Guid.NewGuid().ToString();
+                // yeniDosyaAdi = $"{yeniDosyaAdi}.{dosyaUzantisi}"; alttaki ile aynı işi yapıyor
+                yeniDosyaAdi += $".{dosyaUzantisi}";
+
+                // IO = input - output, dosya yazma, okuma, silme her zaman stream'dir.
+                using FileStream fs = new($"./wwwroot/img/{yeniDosyaAdi}", FileMode.Create);
+                await gorsel.CopyToAsync(fs);
+                model.GorselAd = yeniDosyaAdi;
+            }
+
+            bool sonuc = await _urunService.UpdateAsync(model);
             return RedirectToAction("Index", "Urun");
         }
 

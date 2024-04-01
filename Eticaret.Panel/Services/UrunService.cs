@@ -48,7 +48,6 @@ namespace Eticaret.Panel.Services
             try
             {
                 model.Kategori = null;
-                // UPDATE Urun SET Ad = 'Ayakkabı', Url = 'ayakkabi' WHERE Id = 'DSJH3JH3-FDG43USD-234F-45YGR'
                 _context.Update(model);
                 await _context.SaveChangesAsync();
                 return true;

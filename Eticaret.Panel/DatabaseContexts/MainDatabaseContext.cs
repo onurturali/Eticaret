@@ -13,9 +13,17 @@ namespace Eticaret.Panel.DatabaseContexts
 
         public DbSet<Urun> Urun { get; set; }
 
+        public DbSet<Kullanici> Kullanici { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Kategori>()
+                .Property(m => m.Id)
+                .HasColumnType("uniqueidentifier rowguidcol")
+                .HasDefaultValueSql("newid()")
+                .ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<Kullanici>()
                 .Property(m => m.Id)
                 .HasColumnType("uniqueidentifier rowguidcol")
                 .HasDefaultValueSql("newid()")
