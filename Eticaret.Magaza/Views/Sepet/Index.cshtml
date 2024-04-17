@@ -1,0 +1,46 @@
+﻿<div class="row">
+    <div class="col-md-6" id="urunler">
+        <ul class="list-group">
+        </ul>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        var sepet = localStorage.getItem("sepet");
+        var sepetButon = document.getElementById("sepetButon");
+
+        var satirIskelet = `<li class="list-group-item" id="ID">
+                                                                <div class="d-flex justify-content-between">
+                                                                    <div></div>
+                                                                    <div id="ID-tutar"></div>
+                                                                    <div>
+                                                                        <button class="btn btn-sm btn-danger" onclick="urunAzalt(ID)">-</button>
+                                                                        <span id="ID-adet"></span>
+                                                                        <button class="btn btn-sm btn-success" onclick="urunArttir(ID)">+</button>
+                                                                    </div>
+                                                                </div>
+                                                            </li>`;
+
+        if (sepet == null) {
+            sepet = [];
+            sepetButon.innerText = "0";
+        } else {
+            sepet = JSON.parse(sepet);
+            let toplamAdet = sepet.reduce((acc, m) => acc += m.adet, 0);
+            sepetButon.innerText = toplamAdet;
+        }
+
+        sepet.forEach(m => {
+            let urunlerDiv = document.getElementById("urunler");
+            let ul = urunlerDiv.childNodes[1];
+            let yeniSatir = satirIskelet;
+
+            yeniSatir = yeniSatir.replaceAll("ID", m.id);
+            ul.innerHTML += yeniSatir;
+
+            document.getElementById(`${m.id}-tutar`).innerText = m.fiyat * m.adet;
+            document.getElementById(`${m.id}-adet`).innerText = m.adet;
+        });
+    </script>
+}

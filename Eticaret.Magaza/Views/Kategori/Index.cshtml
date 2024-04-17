@@ -34,11 +34,48 @@ else
                     <div class="card-footer">
                         <div class="d-flex justify-content-between align-items-center">
                             <span>@urun.Fiyat</span>
-                            <button class="btn btn-sm btn-primary">Sepete Ekle</button>
+                            <button class="btn btn-sm btn-primary" onclick="sepeteEkle('@urun.Id', '@urun.Ad', @urun.Fiyat);">Sepete Ekle</button>
                         </div>
                     </div>
                 </div>
             </div>
         }
     </div>
+}
+
+@section Scripts{
+    <script>
+        var sepet = localStorage.getItem("sepet");
+        var sepetButon = document.getElementById("sepetButon");
+
+        if (sepet == null) {
+            sepet = [];
+            sepetButon.innerText = "0";
+        } else {
+            sepet = JSON.parse(sepet);
+            let toplamAdet = sepet.reduce((acc, m) => acc += m.adet, 0);
+            sepetButon.innerText = toplamAdet;
+        }
+
+        function sepeteEkle(id, ad, fiyat) {
+            let bulunanIndex = sepet.findIndex(m => m.id == id);
+
+            if (bulunanIndex == -1) {
+                let yeniUrun = {
+                    id: id,
+                    ad: ad,
+                    fiyat: fiyat,
+                    adet: 1
+                };
+
+                sepet.push(yeniUrun);
+            } else {
+                sepet[bulunanIndex].adet += 1;
+            }
+
+            let toplamAdet = sepet.reduce((acc, m) => acc += m.adet, 0);
+            sepetButon.innerText = toplamAdet;
+            localStorage.setItem("sepet", JSON.stringify(sepet));
+        }
+    </script>
 }
