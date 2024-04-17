@@ -13,7 +13,7 @@ namespace Eticaret.Model
         [DisplayName("Kategori Adı")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Kategori adı giriniz.")]
         [MaxLength(50, ErrorMessage = "En fazla 50 karakter girebilirsiniz.")]
-        public string Ad { get; set; } = string.Empty;
+        public string Ad { get; set; } = "Pantlon";
 
         [DisplayName("Kategori URL Adresi")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Kategori URL giriniz.")]
