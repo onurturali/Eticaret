@@ -10,17 +10,7 @@
         var sepet = localStorage.getItem("sepet");
         var sepetButon = document.getElementById("sepetButon");
 
-        var satirIskelet = `<li class="list-group-item" id="ID">
-                                                                        <div class="d-flex justify-content-between">
-                                                                            <div></div>
-                                                                            <div id="ID-tutar"></div>
-                                                                            <div>
-                                                                                <button class="btn btn-sm btn-danger" onclick="urunAzalt(ID)">-</button>
-                                                                                <span id="ID-adet"></span>
-                                                                                <button class="btn btn-sm btn-success" onclick="urunArttir(ID)">+</button>
-                                                                            </div>
-                                                                        </div>
-                                                                    </li>`;
+        var satirIskelet = `<li class="list-group-item" id="ID"> <div class="d-flex justify-content-between"> <div id="ID-ad" style="width: 10rem;"></div> <div id="ID-tutar"></div> <div> <button class="btn btn-sm btn-danger" onclick="urunAzalt('ID')">-</button> <span id="ID-adet"></span> <button class="btn btn-sm btn-success" onclick="urunArttir('ID')">+</button> </div> </div> </li>`;
 
         if (sepet == null) {
             sepet = [];
@@ -39,8 +29,36 @@
             yeniSatir = yeniSatir.replaceAll("ID", m.id);
             ul.innerHTML += yeniSatir;
 
-            document.getElementById(`${m.id}-tutar`).innerText = m.fiyat * m.adet;
+            document.getElementById(`${m.id}-tutar`).innerText = m.fiyat;
             document.getElementById(`${m.id}-adet`).innerText = m.adet;
+            document.getElementById(`${m.id}-ad`).innerText = m.ad;
         });
+
+        function urunArttir(id) {
+            let bulunanIndex = sepet.findIndex(m => m.id == id);
+            let birimFiyat = sepet[bulunanIndex].fiyat / sepet[bulunanIndex].adet;
+            sepet[bulunanIndex].adet += 1;
+            sepet[bulunanIndex].fiyat += birimFiyat;
+            document.getElementById(`${id}-adet`).innerText = sepet[bulunanIndex].adet;
+            document.getElementById(`${id}-tutar`).innerText = sepet[bulunanIndex].fiyat;
+            localStorage.setItem("sepet", JSON.stringify(sepet));
+        }
+
+        function urunAzalt(id) {
+            let bulunanIndex = sepet.findIndex(m => m.id == id);
+
+            if (sepet[bulunanIndex].adet == 1) {
+                sepet = sepet.filter(m => m.id != id);
+                document.getElementById(id).remove();
+            } else {
+                let birimFiyat = sepet[bulunanIndex].fiyat / sepet[bulunanIndex].adet;
+                sepet[bulunanIndex].adet -= 1;
+                sepet[bulunanIndex].fiyat -= birimFiyat;
+                document.getElementById(`${id}-adet`).innerText = sepet[bulunanIndex].adet;
+                document.getElementById(`${id}-tutar`).innerText = sepet[bulunanIndex].fiyat;
+            }
+
+            localStorage.setItem("sepet", JSON.stringify(sepet));
+        }
     </script>
 }
