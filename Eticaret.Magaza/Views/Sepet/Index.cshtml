@@ -1,7 +1,24 @@
-﻿<div class="row">
+﻿<div class="row mt-4">
     <div class="col-md-6" id="urunler">
         <ul class="list-group">
         </ul>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title mb-0">Sepet Özeti</h3>
+            </div>
+            <div class="card-body">
+                <div>Net Tutar: <span id="sepetNetTutar"></span></div>
+                <div>Toplam KDV: <span id="sepetToplamKdv"></span></div>
+                <div>Kargo Ücreti: <span id="sepetKargoUcreti"></span></div>
+                <div>Brüt Tutar: <span id="sepetBrutTutar"></span></div>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-lg btn-success w-100">Sepeti Onayla</button>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -9,6 +26,11 @@
     <script>
         var sepet = localStorage.getItem("sepet");
         var sepetButon = document.getElementById("sepetButon");
+
+        var sepetNetTutar = document.getElementById("sepetNetTutar");
+        var sepetToplamKdv = document.getElementById("sepetToplamKdv");
+        var sepetKargoUcreti = document.getElementById("sepetKargoUcreti");
+        var sepetBrutTutar = document.getElementById("sepetBrutTutar");
 
         var satirIskelet = `<li class="list-group-item" id="ID"> <div class="d-flex justify-content-between"> <div id="ID-ad" style="width: 10rem;"></div> <div id="ID-tutar"></div> <div> <button class="btn btn-sm btn-danger" onclick="urunAzalt('ID')">-</button> <span id="ID-adet"></span> <button class="btn btn-sm btn-success" onclick="urunArttir('ID')">+</button> </div> </div> </li>`;
 
@@ -34,12 +56,32 @@
             document.getElementById(`${m.id}-ad`).innerText = m.ad;
         });
 
+        toplamHesapla();
+
+        function toplamHesapla() {
+            let brutTutar = sepet.reduce((acc, m) => acc += m.fiyat * m.adet, 0);
+            let netTutar = brutTutar / 1.1;
+            let toplamKdv = brutTutar - netTutar;
+
+            if (brutTutar < 5000 && sepet.length > 0) {
+                brutTutar += 100;
+                sepetKargoUcreti.innerText = "100 ₺";
+            } else {
+                sepetKargoUcreti.innerText = "0 ₺";
+            }
+
+            sepetNetTutar.innerText = `${netTutar.toFixed(2)} ₺`;
+            sepetToplamKdv.innerText = `${toplamKdv.toFixed(2)} ₺`;
+            sepetBrutTutar.innerText = `${brutTutar.toFixed(2)} ₺`;
+        }
+
         function urunArttir(id) {
             let bulunanIndex = sepet.findIndex(m => m.id == id);
             sepet[bulunanIndex].adet += 1;
             document.getElementById(`${id}-adet`).innerText = sepet[bulunanIndex].adet;
             document.getElementById(`${id}-tutar`).innerText = sepet[bulunanIndex].fiyat * sepet[bulunanIndex].adet;
             localStorage.setItem("sepet", JSON.stringify(sepet));
+            toplamHesapla();
         }
 
         function urunAzalt(id) {
@@ -55,6 +97,7 @@
             }
 
             localStorage.setItem("sepet", JSON.stringify(sepet));
+            toplamHesapla();
         }
     </script>
 }

@@ -29,6 +29,18 @@ else
             <div class="col-md-3">
                 <div class="card">
                     <div class="card-body">
+                        @if (urun.GorselAd != null)
+                        {
+                            <center>
+                                <img style="height: 150px;" src="https://localhost:7274/img/@urun.GorselAd" class="img-fluid" />
+                            </center>
+                        }
+                        else
+                        {
+                            <center>
+                            <img class="img-fluid" style="height: 150px;" src="https://png.pngtree.com/png-vector/20221125/ourmid/pngtree-no-image-available-icon-flatvector-illustration-pic-design-profile-vector-png-image_40966566.jpg" />
+                            </center>
+                        }
                         <h5>@urun.Ad</h5>
                     </div>
                     <div class="card-footer">
