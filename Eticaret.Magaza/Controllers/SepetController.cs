@@ -22,7 +22,7 @@ namespace Eticaret.Magaza.Controllers
         {
             Satis satis = new()
             {
-                FaturaNo = "ONR00000000000001",
+                FaturaNo = await _satisService.GetLastFaturaNoAsync(),
                 Tarih = DateTime.Now,
             };
 

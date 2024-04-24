@@ -23,6 +23,7 @@
 </div>
 
 @section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         var sepet = localStorage.getItem("sepet");
         var sepetButon = document.getElementById("sepetButon");
@@ -101,17 +102,58 @@
         }
 
         function sepetiOnayla() {
-            $.ajax({
-                url: "/sepet/sepet-onay",
-                method: "post",
-                data: { urunler: sepet },
-                success: function (res) {
-                    console.log(res);
-                },
-                error: function (err) {
-                    console.log(err);
-                }
-            });
+            if (sepet.length == 0) {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Sepetiniz Boş",
+                    confirmButtonText: "Kapat",
+                })
+            } else {
+                Swal.fire({
+                    title: "Sepeti Onayla",
+                    text: "Siparişinizi onaylamak istiyor musunuz?",
+                    icon: "question", // error, info, warning, success
+                    confirmButtonText: "Onayla",
+                    denyButtonText: "Hayır",
+                    cancelButtonText: "Kapat",
+                    showDenyButton: true,
+                    showCancelButton: false,
+                    confirmButtonColor: "green",
+                    allowOutsideClick: false,
+                })
+                    .then(function (res) {
+                        if (res.isConfirmed) {
+                            Swal.fire({
+                                icon: "info",
+                                title: "Sepetiniz Onaylanıyor...",
+                                showConfirmButton: false,
+                                allowOutsideClick: false,
+                            });
+
+                            setTimeout(() => {
+                                $.ajax({
+                                    url: "/sepet/sepet-onay",
+                                    method: "post",
+                                    data: { urunler: sepet },
+                                    success: function (res) {
+                                        Swal.fire({
+                                            icon: "success",
+                                            title: "Sepet Onaylandı",
+                                            text: "Siparişiniz alındı.",
+                                            showConfirmButton: false,
+                                            allowOutsideClick: false,
+                                        });
+
+                                        localStorage.removeItem("sepet");
+                                    },
+                                    error: function (err) {
+                                        console.log(err);
+                                    }
+                                });
+                            }, 2000);
+                        }
+                    });
+            }
         }
     </script>
 }
