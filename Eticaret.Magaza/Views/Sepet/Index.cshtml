@@ -16,7 +16,7 @@
                 <div>Brüt Tutar: <span id="sepetBrutTutar"></span></div>
             </div>
             <div class="card-footer">
-                <button class="btn btn-lg btn-success w-100">Sepeti Onayla</button>
+                <button class="btn btn-lg btn-success w-100" onclick="sepetiOnayla()">Sepeti Onayla</button>
             </div>
         </div>
     </div>
@@ -98,6 +98,20 @@
 
             localStorage.setItem("sepet", JSON.stringify(sepet));
             toplamHesapla();
+        }
+
+        function sepetiOnayla() {
+            $.ajax({
+                url: "/sepet/sepet-onay",
+                method: "post",
+                data: { urunler: sepet },
+                success: function (res) {
+                    console.log(res);
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
         }
     </script>
 }

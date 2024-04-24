@@ -13,9 +13,25 @@ namespace Eticaret.Magaza.DatabaseContexts
 
         public DbSet<Urun> Urun { get; set; }
 
+        public DbSet<Satis> Satis { get; set; }
+
+        public DbSet<SatisDetay> SatisDetay { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<SatisDetay>()
+                .Property(m => m.Id)
+                .HasColumnType("uniqueidentifier rowguidcol")
+                .HasDefaultValueSql("newid()")
+                .ValueGeneratedOnAdd();
+
             modelBuilder.Entity<Kategori>()
+                .Property(m => m.Id)
+                .HasColumnType("uniqueidentifier rowguidcol")
+                .HasDefaultValueSql("newid()")
+                .ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<Satis>()
                 .Property(m => m.Id)
                 .HasColumnType("uniqueidentifier rowguidcol")
                 .HasDefaultValueSql("newid()")

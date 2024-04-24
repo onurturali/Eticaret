@@ -14,6 +14,8 @@ builder.Services.AddDbContext<MainDatabaseContext>(options =>
 
 builder.Services.AddScoped<IKategoriService, KategoriService>();
 builder.Services.AddScoped<IUrunService, UrunService>();
+builder.Services.AddScoped<ISatisService, SatisService>();
+builder.Services.AddScoped<ISatisDetayService, SatisDetayService>();
 
 var app = builder.Build();
 
