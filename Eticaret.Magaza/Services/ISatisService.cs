@@ -7,5 +7,9 @@ namespace Eticaret.Magaza.Services
         Task<Guid> CreateAsync(Satis satis);
 
         Task<string> GetLastFaturaNoAsync();
+
+        Task<Satis> GetByFaturaNoAsync(string faturaNo);
+
+        Task<string> GetFaturaNoAsync(Guid id);
     }
 }

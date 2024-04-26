@@ -145,6 +145,10 @@
                                         });
 
                                         localStorage.removeItem("sepet");
+
+                                        setTimeout(() => {
+                                            window.location = `/fatura/${res}`;
+                                        }, 2000);
                                     },
                                     error: function (err) {
                                         console.log(err);

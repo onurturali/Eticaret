@@ -16,5 +16,8 @@ namespace Eticaret.Model
         public int Adet { get; set; }
 
         public double Fiyat { get; set; }
+
+        [ForeignKey("UrunId")]
+        public virtual Urun? Urun { get; set; }
     }
 }

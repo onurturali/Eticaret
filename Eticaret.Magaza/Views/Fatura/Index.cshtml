@@ -1,0 +1,102 @@
+﻿@using Eticaret.Model
+
+@{
+    Satis satis = (Satis)ViewBag.Satis;
+    List<SatisDetay> satisDetay = (List<SatisDetay>)ViewBag.SatisDetay;
+    Layout = null;
+}
+
+<html>
+<head>
+    <title>Fatura</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                BiMilyoncu Perakende Mağazacılık A.Ş.
+                <br />
+                Kızılsaray Mahalesi, Hor Hor Apt. B Blok
+                <br />
+                MURATPAŞA / ANTALYA
+                <br />
+                Tel No: 0 (242) 555 55 55
+                <br />
+                Ticaret Sicil No: 1234
+                <br />
+                Mersis No: 1234 5678 9123 4567
+                <br />
+                Vergi Dairesi: ÜÇKAPILAR
+                <br />
+                VKN: 1234567890
+                <br />
+                <br />
+                <b>ETTN:</b> @satis.Id
+            </div>
+            <div class="col-md-2">
+                <center>
+                    <img src="https://seeklogo.com/images/G/gelir-idaresi-baskanligi-yeni-logo-FCA1A618F0-seeklogo.com.png" style="width: 7rem;" />
+                    <br />
+                    <b>e-FATURA</b>
+                </center>
+            </div>
+            <div class="col-md-4">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <td class="fw-bold">Özelleştirme No:</td>
+                            <td>TR1.2.1</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">Fatura Tipi:</td>
+                            <td>Satış</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">Fatura No:</td>
+                            <td>@satis.FaturaNo</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">Fatura Tarihi:</td>
+                            <td>@satis.Tarih.ToString("dd-MM-yyyy")</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">Fatura Saati:</td>
+                            <td>@satis.Tarih.ToString("HH:mm:ss")</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Ürün Adı</th>
+                            <th class="text-end">Adet</th>
+                            <th class="text-end">Tutar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (SatisDetay detay in satisDetay)
+                        {
+                            <tr>
+                                <td>@detay.Urun!.Ad</td>
+                                <td class="text-end">@detay.Adet</td>
+                                <td class="text-end">@(detay.Adet * detay.Fiyat) ₺</td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2" class="text-end">@satisDetay.Select(m=> m.Adet).Sum()</td>
+                            <td class="text-end">@(satisDetay.Select(m => m.Fiyat * m.Adet).Sum()) ₺</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

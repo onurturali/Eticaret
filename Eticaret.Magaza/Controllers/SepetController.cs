@@ -38,7 +38,9 @@ namespace Eticaret.Magaza.Controllers
 
             await _satisDetayService.CreateAsync(satisDetay);
 
-            return Json(1);
+            string faturaNo = await _satisService.GetFaturaNoAsync(yeniSatisId);
+
+            return Json(faturaNo);
         }
 
         [Route("")]

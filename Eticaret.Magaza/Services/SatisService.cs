@@ -43,5 +43,17 @@ namespace Eticaret.Magaza.Services
             yeniFaturaNo += yeniFaturaNoSayi.ToString();
             return yeniFaturaNo;
         }
+
+        public async Task<Satis> GetByFaturaNoAsync(string faturaNo)
+        {
+            Satis satis = await _context.Satis.Where(m => m.FaturaNo == faturaNo).FirstAsync();
+            return satis;
+        }
+
+        public async Task<string> GetFaturaNoAsync(Guid id)
+        {
+            Satis satis = await _context.Satis.Where(m => m.Id == id).FirstAsync();
+            return satis.FaturaNo;
+        }
     }
 }
