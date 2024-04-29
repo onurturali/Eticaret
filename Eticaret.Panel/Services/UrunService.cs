@@ -17,9 +17,11 @@ namespace Eticaret.Panel.Services
         {
             // SELECT * FROM Urun WHERE Id = 'DSJH3JH3-FDG43USD-234F-45YGR'
             Urun urun = await _context.Urun.Where(m => m.Id == id).FirstAsync();
+            // int toplamSatis = _context.Urun.Count();
+            // int toplamSatis = SELECT COUNT(*) FROM Satis
             return urun;
         }
-
+        
         public async Task<List<Urun>> GetAllAsync()
         {
             // SELECT * FROM Urun WHERE Durum != -1

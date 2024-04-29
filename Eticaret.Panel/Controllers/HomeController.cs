@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Eticaret.Model.ViewModels;
+using Eticaret.Panel.Managers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Eticaret.Panel.Controllers
@@ -7,8 +9,10 @@ namespace Eticaret.Panel.Controllers
     public class HomeController : Controller
     {
         [Route("")]
-        public ViewResult Index()
+        public async Task<ViewResult> Index()
         {
+            Home? ozet = await HomeManager.OzetToplam();
+            ViewBag.Ozet = ozet;
             return View();
         }
 

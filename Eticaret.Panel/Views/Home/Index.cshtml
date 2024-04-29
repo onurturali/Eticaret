@@ -1,7 +1,39 @@
-﻿@{
+﻿@using Eticaret.Model.ViewModels;
+@{
     ViewData["Title"] = "Home Page";
+    Home ozet = (Home)ViewBag.Ozet;
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+
+<div class="row mt-4">
+    <div class="col-md-3">
+        <div class="card bg-primary text-light shadow">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <i class="fa-solid fa-chart-line fa-2xl"></i>
+                    <h4 class="mb-0">@ozet.ToplamSatisAdeti</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-success text-light shadow">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <i class="fa-solid fa-sack-dollar fa-2xl"></i>
+                    <h4 class="mb-0">@ozet.ToplamSatisTutari ₺</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-info text-light shadow">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <i class="fa-regular fa-calendar fa-2xl"></i>
+                    <h4 class="mb-0">@ozet.SonSatisTarihi.ToString("dd.MM.yyyy")</h4>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
