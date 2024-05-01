@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "fQke5iVpgvu1gkhAZLtJNpt6D55OA6sihPN2sBTKRkshtrWo3SHGdmNlBmYRzYInB7FR+tAXPAD/iAyIc9qLVw==",
+  "dgSpecHash": "ZUrvUr+U8/G5NPkMcL1FxvBvb8VOvEw4hQiE2Eo5IN/FXU9c0pbaS0rvsnGwdnN6qveEKOGPXD9zDiXiC6akOA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Onur\\source\\repos-aralık\\Eticaret.Panel\\Eticaret.Model\\Eticaret.Model.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Onur\\.nuget\\packages\\dapper\\2.0.78\\dapper.2.0.78.nupkg.sha512",
+    "C:\\Users\\Onur\\.nuget\\packages\\dapper.contrib\\2.0.78\\dapper.contrib.2.0.78.nupkg.sha512"
+  ],
   "logs": []
 }

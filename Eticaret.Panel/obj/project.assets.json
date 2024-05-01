@@ -1046,6 +1046,9 @@
       "Eticaret.Model/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Dapper.Contrib": "2.0.78"
+        },
         "compile": {
           "bin/placeholder/Eticaret.Model.dll": {}
         },

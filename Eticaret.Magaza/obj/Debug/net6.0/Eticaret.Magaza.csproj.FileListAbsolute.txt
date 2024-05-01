@@ -68,3 +68,5 @@ C:\Users\Onur\source\repos-aralık\Eticaret.Panel\Eticaret.Magaza\obj\Debug\net6
 C:\Users\Onur\source\repos-aralık\Eticaret.Panel\Eticaret.Magaza\obj\Debug\net6.0\Eticaret.Magaza.pdb
 C:\Users\Onur\source\repos-aralık\Eticaret.Panel\Eticaret.Magaza\obj\Debug\net6.0\Eticaret.Magaza.genruntimeconfig.cache
 C:\Users\Onur\source\repos-aralık\Eticaret.Panel\Eticaret.Magaza\obj\Debug\net6.0\ref\Eticaret.Magaza.dll
+C:\Users\Onur\source\repos-aralık\Eticaret.Panel\Eticaret.Magaza\bin\Debug\net6.0\Dapper.dll
+C:\Users\Onur\source\repos-aralık\Eticaret.Panel\Eticaret.Magaza\bin\Debug\net6.0\Dapper.Contrib.dll

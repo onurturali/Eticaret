@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "XFAkjYLPvpQ2hl0A11bajH6Gt/QxYysmLp3DijyHVFL+busTZqiaNc6wupdI4ZsCVdojERQlE2h4yNPVeDFjtw==",
+  "dgSpecHash": "09BMuwhJujE0BSHURewP0k77IrCfONGtCJOxAjEeA6eAdoL0IIcpEkdXdR5ngZuB0ymWXiZstE4Z0WItxJUcwA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Onur\\source\\repos-aralık\\Eticaret.Panel\\Eticaret.Magaza\\Eticaret.Magaza.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Onur\\.nuget\\packages\\dapper\\2.0.78\\dapper.2.0.78.nupkg.sha512",
+    "C:\\Users\\Onur\\.nuget\\packages\\dapper.contrib\\2.0.78\\dapper.contrib.2.0.78.nupkg.sha512",
     "C:\\Users\\Onur\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Onur\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\Onur\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.7\\microsoft.data.sqlclient.2.1.7.nupkg.sha512",
