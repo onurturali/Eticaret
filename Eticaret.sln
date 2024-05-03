@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eticaret.Panel", "Eticaret.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eticaret.Model", "Eticaret.Model\Eticaret.Model.csproj", "{C16BF0A3-A50C-4594-BA4D-959A71C1589E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eticaret.Magaza", "Eticaret.Magaza\Eticaret.Magaza.csproj", "{E1AFBDCD-20CA-4F9F-8AD5-7BC80622D137}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eticaret.Magaza", "Eticaret.Magaza\Eticaret.Magaza.csproj", "{E1AFBDCD-20CA-4F9F-8AD5-7BC80622D137}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eticaret.Api", "Eticaret.Api\Eticaret.Api.csproj", "{81AEEE14-886A-4182-BE74-3DFEA692DF3F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{E1AFBDCD-20CA-4F9F-8AD5-7BC80622D137}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1AFBDCD-20CA-4F9F-8AD5-7BC80622D137}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1AFBDCD-20CA-4F9F-8AD5-7BC80622D137}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81AEEE14-886A-4182-BE74-3DFEA692DF3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81AEEE14-886A-4182-BE74-3DFEA692DF3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81AEEE14-886A-4182-BE74-3DFEA692DF3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81AEEE14-886A-4182-BE74-3DFEA692DF3F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

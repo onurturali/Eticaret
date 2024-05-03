@@ -1,10 +1,28 @@
 ﻿@using Eticaret.Magaza.Services
 @using Eticaret.Model
+@using Eticaret.Model.ViewModels;
+@using Newtonsoft.Json;
 
 @inject IKategoriService kategoriService
 
 @{
+    Doviz? doviz = new();
+    string apiUrl = "https://localhost:7077/Doviz/Get?doviz=usd";
+
     List<Kategori> kategoriler = await kategoriService.GetAllAsync();
+
+    using HttpClient client = new();
+    HttpResponseMessage response = await client.GetAsync(apiUrl);
+
+    if (response.IsSuccessStatusCode)
+    {
+        string responseBody = await response.Content.ReadAsStringAsync();
+        doviz = JsonConvert.DeserializeObject<Doviz>(responseBody);
+    }
+    else
+    {
+        doviz = null;
+    }
 }
 
 <!DOCTYPE html>
@@ -31,9 +49,15 @@
                         </li>
                     }
                 </ul>
-                <form class="d-flex" role="search">
+                <form class="d-flex align-items-center" role="search">
                     <input class="form-control me-2" type="search" placeholder="Ürün ara..." aria-label="Search">
                     <button class="btn btn-outline-light" type="submit">Ara</button>
+
+                    @if (doviz != null)
+                    {
+                        <div style="margin-left: 15px; width: 200px; color: white;">@doviz.Ad = @doviz.Kur ₺</div>
+                    }
+
                     <a href="/sepet" class="btn btn-danger ms-2" type="button" id="sepetButon">Sepet</a>
                 </form>
             </div>
